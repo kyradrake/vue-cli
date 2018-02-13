@@ -1,14 +1,20 @@
 <template>
-  <div class="hello">
+  <div class="to-do-item">
+    <input type="checkbox" v-model="done">
     <li>{{ item }} </li>
-    <button>X</button>
+    <button v-on:click="$emit('remove')">Remove</button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'ToDoItem',
-  props: ['item']
+  props: ['item'],
+  data () {
+    return {
+	  done: false
+    }
+  },
 }
 </script>
 

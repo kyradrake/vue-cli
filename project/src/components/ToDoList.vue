@@ -6,8 +6,10 @@
 	  placeholder="Add a new To Do Item"
 	>
     <ToDoItem 
-	  v-for="todo in todos"
+	  v-for="(todo, index) in todos"
+	  v-bind:key="todo.id"
 	  v-bind:item="todo.item"
+	  v-on:remove="todos.splice(index, 1)"
 	></ToDoItem>
   </div>
 </template>
@@ -44,6 +46,9 @@ export default {
 	  })
 	  this.nextToDoID++
 	  this.newToDoItem = ''
+	},
+	removeToDoItem(index) {
+	  todos.splice(index, 1)
 	}
   }
 }
