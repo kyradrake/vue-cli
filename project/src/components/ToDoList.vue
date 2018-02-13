@@ -1,5 +1,8 @@
 <template>
   <div id="to-do-list">
+    <ToDoHeader
+	  v-bind:items="todos.length"
+	></ToDoHeader>
     <input
 	  v-model="newToDoItem"
 	  v-on:keyup.enter="addNewToDoItem"
@@ -15,11 +18,13 @@
 </template>
 
 <script>
+import ToDoHeader from './ToDoHeader'
 import ToDoItem from './ToDoItem'
 
 export default {
   name: 'ToDoList',
   components: {
+	ToDoHeader,
 	ToDoItem
   },
   data () {
@@ -46,9 +51,6 @@ export default {
 	  })
 	  this.nextToDoID++
 	  this.newToDoItem = ''
-	},
-	removeToDoItem(index) {
-	  todos.splice(index, 1)
 	}
   }
 }
@@ -69,5 +71,9 @@ li {
 }
 a {
   color: #42b983;
+}
+input[type=text] {
+  margin-bottom: 10px 10px;
+  padding-bottom: 10px 10px;
 }
 </style>
