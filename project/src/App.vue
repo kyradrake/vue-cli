@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <HelloWorld/>
+	<ToDoList/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
+import ToDoList from './components/ToDoList'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+	ToDoList
   }
 }
 </script>

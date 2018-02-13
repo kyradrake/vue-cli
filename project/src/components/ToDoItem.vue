@@ -1,17 +1,14 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <li>{{ item }} </li>
+    <button>X</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      msg: "Kyra's To-Do App"
-    }
-  }
+  name: 'ToDoItem',
+  props: ['item']
 }
 </script>
 
@@ -26,7 +23,7 @@ ul {
 }
 li {
   display: inline-block;
-  margin: 0 10px;
+  margin: 10px 10px;
 }
 a {
   color: #42b983;
