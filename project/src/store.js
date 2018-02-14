@@ -8,8 +8,22 @@ Vue.config.productionTip = false
 Vue.use(Vuex)
 
 /* eslint-disable no-new */
-export default new Vuex.store({
+export default new Vuex.Store({
   state: {
-	todos: []
-  }	
+	  todos: [
+      {
+  		  id: 1,
+  		  item: 'Do Thing 1'
+  		},
+  		{
+  		  id: 2,
+  		  item: 'Do Thing 2'
+  		}
+    ]
+  },
+  getters: {
+    numberToDos: state => {
+      return state.todos.length
+    }
+  }
 })
