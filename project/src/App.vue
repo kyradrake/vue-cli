@@ -13,7 +13,7 @@ export default {
   name: 'App',
   components: {
     HelloWorld,
-	ToDoList
+	  ToDoList
   }
 }
 </script>

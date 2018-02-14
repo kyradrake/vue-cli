@@ -5,6 +5,8 @@ import Vuex from 'vuex'
 import App from './App'
 import store from './store'
 
+import 'es6-promise/auto'
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
