@@ -1,57 +1,52 @@
 <template>
   <div id="to-do-list">
     <ToDoHeader
-	  v-bind:items="todos.length"
-	></ToDoHeader>
+	    v-bind:items="todos.length"
+	  ></ToDoHeader>
     <input
-	  v-model="newToDoItem"
-	  v-on:keyup.enter="addNewToDoItem"
-	  placeholder="Add a new To Do Item"
-	>
-    <ToDoItem 
-	  v-for="(todo, index) in todos"
-	  v-bind:key="todo.id"
-	  v-bind:item="todo.item"
-	  v-on:remove="todos.splice(index, 1)"
-	></ToDoItem>
+	    v-model="newToDoItem"
+	    v-on:keyup.enter="addNewToDoItem"
+	    placeholder="Add a new To Do Item"
+	  >
+    <ToDoItem
+	    v-for="(todo, index) in todos"
+	    v-bind:key="todo.id"
+	    v-bind:item="todo.item"
+	    v-on:remove="todos.splice(index, 1)"
+	  ></ToDoItem>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import ToDoHeader from './ToDoHeader'
 import ToDoItem from './ToDoItem'
 
 export default {
   name: 'ToDoList',
   components: {
-	ToDoHeader,
-	ToDoItem
+	  ToDoHeader,
+	  ToDoItem
   },
   data () {
     return {
-	  newToDoItem: '',
-	  nextToDoID: 3,
-      todos: [
-		{
-		  id: 1,
-		  item: 'Do Thing 1'
-		},
-		{
-		  id: 2,
-		  item: 'Do Thing 2'
-		}
-	  ]
+	    newToDoItem: '',
+	    nextToDoID: 3
     }
   },
+  computed: mapState([
+    'todos'
+  ]),
   methods: {
     addNewToDoItem() {
-	  this.todos.push({
-	    id: this.nextToDoID,
-		item: this.newToDoItem
-	  })
-	  this.nextToDoID++
-	  this.newToDoItem = ''
-	}
+	    this.todos.push({
+	      id: this.nextToDoID,
+		    item: this.newToDoItem
+	    })
+	    this.nextToDoID++
+	    this.newToDoItem = ''
+	  }
   }
 }
 </script>
