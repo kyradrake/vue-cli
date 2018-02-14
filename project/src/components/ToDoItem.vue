@@ -1,7 +1,7 @@
 <template>
   <div class="to-do-item">
     <input type="checkbox" v-model="done">
-    <li> {{ item }} </li>
+    <li>{{ item }}</li>
     <button v-on:click="$emit('remove')">Remove</button>
   </div>
 </template>

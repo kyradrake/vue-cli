@@ -1,6 +1,6 @@
 <template>
   <div class="to-do-header">
-    <h3> {{ numberToDos }} To Do Items Remaining</h3>
+    <h3>{{ numberToDos }} To Do Items Remaining</h3>
   </div>
 </template>
 
