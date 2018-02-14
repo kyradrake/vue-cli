@@ -1,13 +1,17 @@
 <template>
   <div class="to-do-header">
-    <h3> {{ items }} To Do Items Remaining</h3>
+    <h3> {{ numberToDos }} To Do Items Remaining</h3>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'ToDoHeader',
-  props: ['items']
+  computed: mapGetters([
+    'numberToDos'
+  ])
 }
 </script>
 

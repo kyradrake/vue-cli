@@ -1,11 +1,9 @@
 <template>
   <div id="to-do-list">
-    <ToDoHeader
-	    v-bind:items="todos.length"
-	  ></ToDoHeader>
+    <ToDoHeader></ToDoHeader>
     <input
 	    v-model="newToDoItem"
-	    v-on:keyup.enter="addNewToDoItem(newToDoItem)"
+	    v-on:keyup.enter="addNewItem"
 	    placeholder="Add a new To Do Item"
 	  >
     <ToDoItem
@@ -19,7 +17,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import { mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
 import ToDoHeader from './ToDoHeader'
 import ToDoItem from './ToDoItem'
@@ -35,18 +32,19 @@ export default {
 	    newToDoItem: ''
     }
   },
-  computed: {
-    ...mapState([
-      'todos'
+  computed: mapState([
+    'todos'
+  ]),
+  methods: {
+    ...mapMutations([
+      'addNewToDoItem',
+      'removeToDoItem'
     ]),
-    ...mapGetters([
-      'numberToDos'
-    ])
-  },
-  methods: mapMutations([
-    'addNewToDoItem',
-    'removeToDoItem'
-  ])
+    addNewItem() {
+      this.addNewToDoItem(this.newToDoItem)
+      this.newToDoItem = ''
+    }
+  }
 }
 </script>
 
