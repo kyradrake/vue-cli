@@ -1,7 +1,7 @@
 <template>
   <div class="to-do-item">
     <input type="checkbox" v-model="done">
-    <li>{{ item }} </li>
+    <li> {{ item }} </li>
     <button v-on:click="$emit('remove')">Remove</button>
   </div>
 </template>
@@ -9,10 +9,12 @@
 <script>
 export default {
   name: 'ToDoItem',
-  props: ['item'],
+  props: {
+    item: String
+  },
   data () {
     return {
-	  done: false
+	    done: false
     }
   },
 }
