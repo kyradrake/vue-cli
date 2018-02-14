@@ -5,14 +5,14 @@
 	  ></ToDoHeader>
     <input
 	    v-model="newToDoItem"
-	    v-on:keyup.enter="addNewToDoItem"
+	    v-on:keyup.enter="addNewToDoItem(newToDoItem)"
 	    placeholder="Add a new To Do Item"
 	  >
     <ToDoItem
 	    v-for="(todo, index) in todos"
 	    v-bind:key="todo.id"
 	    v-bind:item="todo.item"
-	    v-on:remove="todos.splice(index, 1)"
+	    v-on:remove="removeToDoItem(index)"
 	  ></ToDoItem>
   </div>
 </template>
@@ -20,6 +20,7 @@
 <script>
 import { mapState } from 'vuex'
 import { mapGetters } from 'vuex'
+import { mapMutations } from 'vuex'
 import ToDoHeader from './ToDoHeader'
 import ToDoItem from './ToDoItem'
 
@@ -31,23 +32,21 @@ export default {
   },
   data () {
     return {
-	    newToDoItem: '',
-	    nextToDoID: 3
+	    newToDoItem: ''
     }
   },
-  computed: mapState([
-    'todos'
-  ]),
-  methods: {
-    addNewToDoItem() {
-	    this.todos.push({
-	      id: this.nextToDoID,
-		    item: this.newToDoItem
-	    })
-	    this.nextToDoID++
-	    this.newToDoItem = ''
-	  }
-  }
+  computed: {
+    ...mapState([
+      'todos'
+    ]),
+    ...mapGetters([
+      'numberToDos'
+    ])
+  },
+  methods: mapMutations([
+    'addNewToDoItem',
+    'removeToDoItem'
+  ])
 }
 </script>
 

@@ -19,11 +19,24 @@ export default new Vuex.Store({
   		  id: 2,
   		  item: 'Do Thing 2'
   		}
-    ]
+    ],
+    nextToDoID: 3
   },
   getters: {
     numberToDos: state => {
       return state.todos.length
+    }
+  },
+  mutations: {
+    addNewToDoItem(state, todo) {
+	    state.todos.push({
+	      id: state.nextToDoID,
+		    item: todo
+	    })
+	    state.nextToDoID++
+	  },
+    removeToDoItem(state, index) {
+      state.todos.splice(index, 1)
     }
   }
 })
