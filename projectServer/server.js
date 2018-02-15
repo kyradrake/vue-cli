@@ -1,19 +1,23 @@
 const express = require('express')
-const app = express()
+const http = require('http')
+const fs = require('fs');
+
+// Set up server
+var app = express()
+var server = http.Server(app);
+var io = require('socket.io')(server)
+
+// Start listening for clients
+server.listen(3000)
+
+// Log to console when a client connects
+io.on('connection', function(socket) {
+  console.log('Client connected!')
+})
 
 // Read data from JSON file
-const fs = require('fs');
 let readData = fs.readFileSync('data.json')
 let todos = JSON.parse(readData)
-
-// Home path
-app.get('/', (req, res) => res.send('Hello World!'))
-
-// Path to send todos
-app.get('/data', (req, res) => res.send(JSON.stringify(todos)))
-
-// Start server
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
 
 // Write data to JSON file
 function updateData(data) {
