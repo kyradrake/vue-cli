@@ -19,24 +19,34 @@ server.listen(3000)
 
 // Log to console when a client connects
 io.on('connection', (socket) => {
-  console.log('Client connected!')
-
   socket.emit('todos', JSON.stringify(todos))
 
   // Client adds a To Do item to the list
   socket.on('addItem', (todo) => {
-    console.log('Client added data: ' + todo)
-
+    // Add new to do item to list
     todos.push({
       id: nextToDoID,
       item: todo
     })
     nextToDoID++
+
+    // Send updated to do list to client
+    socket.emit('todos', JSON.stringify(todos))
+
+    // Update JSON file
+    updateData()
   })
 
   // Client removes a To Do item from the list
-  socket.on('removeItem', () => {
-    console.log('Client removed data')
+  socket.on('removeItem', (index) => {
+    // Remove item from list
+    todos.splice(index, 1)
+
+    // Send updated to do list to client
+    socket.emit('todos', JSON.stringify(todos))
+
+    // Update JSON file
+    updateData()
   })
 })
 

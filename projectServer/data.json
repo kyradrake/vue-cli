@@ -1,13 +1,1 @@
-{
-  "todos": [
-    {
-      "id": 1,
-      "item": "Do Thing 1"
-    },
-    {
-      "id": 2,
-      "item": "Do Thing 2"
-    }
-  ],
-  "nextToDoID": 3
-}
+{"todos":[{"id":1,"item":"Do Thing 1"},{"id":2,"item":"Do Thing 2"},{"id":3,"item":"Do Thing 3"}],"nextToDoID":4}

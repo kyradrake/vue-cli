@@ -18,22 +18,8 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    addNewToDoItem(state, todo) {
-	    client.addItem(todo)
-	  },
-    removeToDoItem(state, index) {
-      state.todos.splice(index, 1)
-    },
     SOCKET_TODOS: (state, data) => {
       state.todos = JSON.parse(data)
-    }
-  },
-  actions: {
-    addNewToDoItem (context, todo) {
-      //
-    },
-    removeToDoItem(context, index) {
-      context.commit('removeToDoItem', index)
     }
   }
 })

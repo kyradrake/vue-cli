@@ -10,14 +10,13 @@
 	    v-for="(todo, index) in todos"
 	    v-bind:key="todo.id"
 	    v-bind:item="todo.item"
-	    v-on:remove="removeToDoItem(index)"
+	    v-on:remove="removeItem(index)"
 	  ></ToDoItem>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import { mapActions } from 'vuex'
 import ToDoHeader from './ToDoHeader'
 import ToDoItem from './ToDoItem'
 
@@ -36,15 +35,12 @@ export default {
     'todos'
   ]),
   methods: {
-    ...mapActions([
-      'addNewToDoItem',
-      'removeToDoItem'
-    ]),
     addNewItem() {
-      //this.addNewToDoItem(this.newToDoItem)
       this.$socket.emit('addItem', this.newToDoItem)
       this.newToDoItem = ''
-      //console.log('todos in ToDoList are ' + todos)
+    },
+    removeItem(index) {
+      this.$socket.emit('removeItem', index)
     }
   }
 }
