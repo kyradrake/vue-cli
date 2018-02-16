@@ -17,7 +17,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import { mapMutations } from 'vuex'
+import { mapActions } from 'vuex'
 import ToDoHeader from './ToDoHeader'
 import ToDoItem from './ToDoItem'
 
@@ -36,13 +36,15 @@ export default {
     'todos'
   ]),
   methods: {
-    ...mapMutations([
+    ...mapActions([
       'addNewToDoItem',
       'removeToDoItem'
     ]),
     addNewItem() {
-      this.addNewToDoItem(this.newToDoItem)
+      //this.addNewToDoItem(this.newToDoItem)
+      this.$socket.emit('addItem', this.newToDoItem)
       this.newToDoItem = ''
+      //console.log('todos in ToDoList are ' + todos)
     }
   }
 }

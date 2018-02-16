@@ -12,7 +12,11 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "babel": "^6.23.0",
+    "bufferutil": "^3.0.3",
+    "utf-8-validate": "^4.0.0",
     "vue": "^2.5.2",
+    "vue-socket.io": "^2.1.1-b",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

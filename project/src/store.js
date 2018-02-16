@@ -2,31 +2,15 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { Client } from './client'
 
 Vue.config.productionTip = false
 
 Vue.use(Vuex)
 
-let client = new Client()
-client.startClient()
-
-console.log('client started')
-
 /* eslint-disable no-new */
 export default new Vuex.Store({
   state: {
-	  todos: [
-      {
-  		  id: 1,
-  		  item: 'Do Thing 1'
-  		},
-  		{
-  		  id: 2,
-  		  item: 'Do Thing 2'
-  		}
-    ],
-    nextToDoID: 3
+	  todos: []
   },
   getters: {
     numberToDos: state => {
@@ -35,14 +19,21 @@ export default new Vuex.Store({
   },
   mutations: {
     addNewToDoItem(state, todo) {
-	    state.todos.push({
-	      id: state.nextToDoID,
-		    item: todo
-	    })
-	    state.nextToDoID++
+	    client.addItem(todo)
 	  },
     removeToDoItem(state, index) {
       state.todos.splice(index, 1)
+    },
+    SOCKET_TODOS: (state, data) => {
+      state.todos = JSON.parse(data)
+    }
+  },
+  actions: {
+    addNewToDoItem (context, todo) {
+      //
+    },
+    removeToDoItem(context, index) {
+      context.commit('removeToDoItem', index)
     }
   }
 })
