@@ -2,10 +2,16 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { Client } from './client'
 
 Vue.config.productionTip = false
 
 Vue.use(Vuex)
+
+let client = new Client()
+client.startClient()
+
+console.log('client started')
 
 /* eslint-disable no-new */
 export default new Vuex.Store({
